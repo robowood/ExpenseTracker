@@ -78,7 +78,7 @@ const Authentication = () => {
       .then((data) => {
         console.log(data);
         authCtx.login(data.idToken);
-        navigate('/');
+        
       })
       .catch((err) => {
         alert(err.message);

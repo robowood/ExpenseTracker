@@ -4,6 +4,7 @@ import Welcome from './Components/Pages/Welcome';
 import { Route,Routes } from 'react-router-dom';
 import AuthContext from './Store/auth-context';
 import { useContext } from 'react';
+import CompleteProfile from './Components/Pages/CompleteProfile';
 
 
 function App() {
@@ -12,6 +13,10 @@ function App() {
     <div>
       <Routes>
         <Route path='/' element= {!authCtx.isLoggedIn ? <Authentication /> : <Welcome />} />
+        <Route path='/completeprofile' element={!authCtx.isLoggedIn ? <Authentication /> : <CompleteProfile />} />
+
+        {/* <Route path='/completeprofile' element= {<CompleteProfile/>} /> */}
+
         {/* <Route path='/completeprofile' element={!isAuth ? <Authentication /> : <CompleteProfile />} />
         <Route path='/forgotPassword' element={<ForgotPassword />} /> */}
 
