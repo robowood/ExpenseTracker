@@ -5,6 +5,27 @@ const Contact=()=>{
   const [name,setName]=useState();
   const [imgUrl,setImgUrl]=useState();
 
+  // const urlGet='https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBA0u2j_pe10AsypQuTme8e1xEDdseCq4M';
+//   const getDataHandler=()=>{
+//     fetch(urlGet,{
+//         method:"POST",
+//         body:JSON.stringify({
+//             idToken:localStorage.getItem('idToken')
+//         }),
+//         headers:{
+//             'Content-Type':'application/json'
+//         }
+//     }).then((res)=>{
+//         const data =res.json();
+//         data.then((resp)=>{
+//             console.log(resp.users);
+//             setName(resp.users[0].displayName)
+//             setImgUrl(resp.users[0].photoUrl)
+//         })
+//     })
+// }
+
+
     const nameChangeHandler=(e)=>{
       setName(e.target.value);
     };
@@ -37,7 +58,23 @@ const Contact=()=>{
     
             }
         })
-    }).catch((err)=>{
+    })
+    fetch(url,{
+      method:"GET",
+      body:JSON.stringify({
+          idToken:localStorage.getItem('idToken')
+      }),
+      headers:{
+          'Content-Type':'application/json'
+      }
+  }).then((res)=>{
+      const data =res.json();
+      data.then((resp)=>{
+          console.log(resp.users);
+          setName(resp.users[0].displayName)
+          setImgUrl(resp.users[0].photoUrl)
+      })
+  }).catch((err)=>{
         alert(err);
     })
     
