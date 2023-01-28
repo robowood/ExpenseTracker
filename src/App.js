@@ -17,8 +17,7 @@ function App() {
 
         {/* <Route path='/completeprofile' element= {<CompleteProfile/>} /> */}
 
-        {/* <Route path='/completeprofile' element={!isAuth ? <Authentication /> : <CompleteProfile />} />
-        <Route path='/forgotPassword' element={<ForgotPassword />} /> */}
+      
 
 
       </Routes>
