@@ -1,6 +1,6 @@
 import { useState, useRef,useContext } from 'react';
 import AuthContext from '../../Store/auth-context';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import classes from './Authentication.module.css';
 
 const Authentication = () => {
@@ -113,6 +113,8 @@ const Authentication = () => {
         </div>
 
         <div className={classes.actions}>
+        {isLogin && <Link className={classes.forget} to='/forgotPassword'>Forgot Password ?</Link>}
+
           {!isLoading && (
             <button>{isLogin ? 'Login' : 'Create Account'}</button>
           )}

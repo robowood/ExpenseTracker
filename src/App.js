@@ -5,6 +5,7 @@ import { Route,Routes } from 'react-router-dom';
 import AuthContext from './Store/auth-context';
 import { useContext } from 'react';
 import CompleteProfile from './Components/Pages/CompleteProfile';
+import ForgetPassword from './Components/Pages/ForgetPassword/ForgetPassword';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element= {!authCtx.isLoggedIn ? <Authentication /> : <Welcome />} />
         <Route path='/completeprofile' element={!authCtx.isLoggedIn ? <Authentication /> : <CompleteProfile />} />
+        <Route path='/forgotPassword' element={<ForgetPassword />} />
 
         {/* <Route path='/completeprofile' element= {<CompleteProfile/>} /> */}
 
