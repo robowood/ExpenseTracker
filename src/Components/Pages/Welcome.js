@@ -7,6 +7,11 @@ import AuthContext from '../../Store/auth-context'
 const Welcome = () => {
     
  const authCtx=useContext(AuthContext)
+
+ const logoutHandler=()=>{
+    authCtx.logout();
+    
+ }
     
 
     
@@ -49,7 +54,7 @@ const Welcome = () => {
         </div>
         <div className={classes.buttons}>
        
-        <button className={classes.logout} >logout</button>
+        <button className={classes.logout} onClick={logoutHandler}>logout</button>
         <button type='submit' onClick={verifyEmailHandler} className={classes.verifyEmail}>Verify Email</button>
         </div>
         <div className={classes.line}></div>
