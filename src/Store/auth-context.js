@@ -16,6 +16,7 @@ export const AuthContextProvider = (props) => {
   const loginHandler = (token) => {
     setToken(token);
     localStorage.setItem('token',token);
+    
 
   };
 
@@ -23,6 +24,8 @@ export const AuthContextProvider = (props) => {
     setToken(null);
     localStorage.removeItem('token');
   };
+const email=localStorage.getItem('email');
+console.log(email);
 
   const contextValue = {
     token: token,

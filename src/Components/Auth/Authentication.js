@@ -28,8 +28,8 @@ const Authentication = () => {
           return alert("Password and Confirm passsword are not same");
         }
       
-  
-
+ const password= localStorage.setItem('password', enteredPassword)
+console.log(password);
     // optional: Add validation
 
     setIsLoading(true);

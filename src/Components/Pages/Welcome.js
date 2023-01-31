@@ -37,6 +37,7 @@ const Welcome = () => {
             const data=res.json();
             data.then((resp)=>{
                 console.log(resp);
+                alert("check your email")
             })
         }).catch((err)=>{
             console.log('err',err)
@@ -58,7 +59,7 @@ const Welcome = () => {
         </div>
         <div className={classes.buttons}>
 
-        <button className={classes.logout} onClick={()=>ctx.logout()}>logout</button>
+        <button className={classes.logout} onClick={logoutHandler}>logout</button>
         <button type='submit' onClick={verifyEmailHandler} className={classes.verifyEmail}>Verify Email</button>
         </div>
         <div className={classes.line}></div>
