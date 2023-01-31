@@ -3,10 +3,14 @@ import React, { Fragment, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import classes from './Welcome.module.css'
 import AuthContext from '../../Store/auth-context'
+import ExpenseItem from './Expenses/ExpenseItem'
+import ExpenseTable from './Expenses/ExpenseTable'
+import Store,{StoreData} from '../StoreData/Store'
 
 const Welcome = () => {
     
  const authCtx=useContext(AuthContext)
+ const ctx=useContext(StoreData);
 
  const logoutHandler=()=>{
     authCtx.logout();
@@ -53,17 +57,16 @@ const Welcome = () => {
             </div>
         </div>
         <div className={classes.buttons}>
-       
-        <button className={classes.logout} onClick={logoutHandler}>logout</button>
+
+        <button className={classes.logout} onClick={()=>ctx.logout()}>logout</button>
         <button type='submit' onClick={verifyEmailHandler} className={classes.verifyEmail}>Verify Email</button>
         </div>
         <div className={classes.line}></div>
-        
-      <div className={classes.form}>
-    
+        <div className={classes.form}>
+        <ExpenseItem />
+        <ExpenseTable/>
         </div>
-        <div className={classes.table}>
-        </div>
+      
       
      
     </Fragment>

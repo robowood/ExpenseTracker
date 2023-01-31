@@ -6,13 +6,16 @@ import AuthContext from './Store/auth-context';
 import { useContext } from 'react';
 import CompleteProfile from './Components/Pages/CompleteProfile';
 import ForgetPassword from './Components/Pages/ForgetPassword/ForgetPassword';
+import ExpenseItems from './Components/Pages/Expenses/ExpenseItem';
+import Store from './Components/StoreData/Store';
 
 
 function App() {
   const authCtx=useContext(AuthContext);
   return (
     <div>
-      <Routes>
+      <Store>   
+           <Routes>
         <Route path='/' element= {!authCtx.isLoggedIn ? <Authentication /> : <Welcome />} />
         <Route path='/completeprofile' element={!authCtx.isLoggedIn ? <Authentication /> : <CompleteProfile />} />
         <Route path='/forgotPassword' element={<ForgetPassword />} />
@@ -23,6 +26,7 @@ function App() {
 
 
       </Routes>
+      </Store>
 
     </div>
   );
