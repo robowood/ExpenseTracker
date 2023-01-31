@@ -65,7 +65,7 @@ const Welcome = () => {
         <div className={classes.line}></div>
         <div className={classes.form}>
         <ExpenseItem />
-        <ExpenseTable/>
+
         </div>
       
       
