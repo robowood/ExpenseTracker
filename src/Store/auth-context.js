@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = React.createContext({
   token: '',
@@ -8,6 +9,8 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
+  const navigate=useNavigate();
+
  const initialToken=localStorage.getItem('token');
   const [token, setToken] = useState(initialToken);
 
@@ -16,6 +19,8 @@ export const AuthContextProvider = (props) => {
   const loginHandler = (token) => {
     setToken(token);
     localStorage.setItem('token',token);
+    navigate('/')
+    
     
 
   };

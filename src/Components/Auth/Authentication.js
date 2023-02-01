@@ -78,6 +78,7 @@ console.log(password);
       .then((data) => {
         console.log(data);
         authCtx.login(data.idToken);
+        navigate('/')
         
       })
       .catch((err) => {

@@ -6,16 +6,18 @@ import AuthContext from '../../Store/auth-context'
 import ExpenseItem from './Expenses/ExpenseItem'
 import ExpenseTable from './Expenses/ExpenseTable'
 import Store,{StoreData} from '../StoreData/Store'
-
+import { useDispatch } from 'react-redux';
+import { authAction } from '../../StoreRedux/authReducer'
 const Welcome = () => {
     
- const authCtx=useContext(AuthContext)
+//  const authCtx=useContext(AuthContext)
  const ctx=useContext(StoreData);
+ const dispatch=useDispatch();
 
- const logoutHandler=()=>{
-    authCtx.logout();
+//  const logoutHandler=()=>{
+//     authCtx.logout();
     
- }
+//  }
     
 
     
@@ -28,7 +30,8 @@ const Welcome = () => {
             method:'POST',
             body:JSON.stringify({
                 requestType:"VERIFY_EMAIL",
-                idToken:authCtx.token,
+                // idToken:authCtx.token,
+                Token:localStorage.getItem('Token')
             }),
             headers:{
                 'Content-Type': 'application/json'
@@ -59,7 +62,7 @@ const Welcome = () => {
         </div>
         <div className={classes.buttons}>
 
-        <button className={classes.logout} onClick={logoutHandler}>logout</button>
+        <button className={classes.logout} onClick={()=>dispatch(authAction.logout())}>logout</button>
         <button type='submit' onClick={verifyEmailHandler} className={classes.verifyEmail}>Verify Email</button>
         </div>
         <div className={classes.line}></div>

@@ -16,7 +16,7 @@ function App() {
     <div>
       <Store>   
            <Routes>
-        <Route path='/' element= {!authCtx.isLoggedIn ? <Authentication /> : <Welcome />} />
+        <Route path='/' element= { <Welcome />} />
         <Route path='/completeprofile' element={!authCtx.isLoggedIn ? <Authentication /> : <CompleteProfile />} />
         <Route path='/forgotPassword' element={<ForgetPassword />} />
 

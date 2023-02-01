@@ -10,7 +10,7 @@ const Store = (props) => {
     const [catagory ,setcatagory] =useState()
     const [ description,setdescription] =useState()
 
-    const url='https://expancetrackerauth-default-rtdb.firebaseio.com/';
+    const url='https://expense-tracker-15366-default-rtdb.firebaseio.com/';
 
     const addItemHandler = async (newItem)=>{
         const data=await newItem

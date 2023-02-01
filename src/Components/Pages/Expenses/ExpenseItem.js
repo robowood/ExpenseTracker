@@ -1,172 +1,9 @@
-// import React from 'react'
-// import { useState,useContext ,useEffect} from 'react';
-// import  './ExpenseItem.css';
-// import { StoreData } from '../../StoreData/Store';
-// function ExpenseItem() {
-
-//   const ctx=useContext(StoreData)
-// const [amount,setAmount]=useState('');
-// const [description,setDiscription]=useState('');
-// const [catagory,setCatagory]=useState('');
-// const [isEditing, setisEditing] = useState(false);
-// const [reRender, setreRender] = useState(true);
-
-
-
-// const discriptionChangeHandler=(e)=>{
-//   setDiscription( e.target.value);
-  
-// }
-
-//     const catagoryChangeHandler=(e)=>{
-//         setCatagory(e.target.value);
-//     };
-//     const amountChangeHandler = (e) => {
-//         setAmount(e.target.value);
-//       };
-//   const url = "https://expense-tracker-15366-default-rtdb.firebaseio.com/";
-//   const email = localStorage.getItem("email");
-
-//   const getDataFrom = async () => {
-//     const response = await fetch(`${url}${email}.json`, {
-//       method: "GET",
-//     });
-//     const data = await response.json();
-//     console.log("data111", data);
-//     const newItem = [];
-//     for (let key in data) {
-//       newItem.push({ id: key, ...data[key] });
-//     }
-//      ctx.addItem(newItem);
-//     // dispatch(expAction.addItemHandler(newItem));
-//      console.log('newItem',newItem);
-//   };
-    
-//     const submitHandler= async(e)=>{
-//       e.preventDefault();
-//         const expense={
-//             amount: amount,
-//             catagory:catagory,
-//             description:description
-//         };
-//         console.log(expense);
-//         ctx.addItem(expense)
-
-//         if (!isEditing) {
-//           const response = await fetch(`${url}${email}.json`, {
-//             method: "POST",
-//             body: JSON.stringify({
-//               amount: amount,
-//               catagory: catagory,
-//               decription: description,
-//             }),
-//             headers: {
-//               "Content-Type": "application/json",
-//             },
-//           });
-//           const data1 = await response.json();
-//           //  console.log('data222',data1);
-//         } else {
-//           const res = await fetch(`${url}${email}.json`, {
-//             method: "PUT",
-//             body: JSON.stringify({
-//               amount: amount,
-//               catagory: catagory,
-//               decription: description,
-//             }),
-//             headers: {
-//               "Content-Type": "application/json",
-//             },
-//           });
-//           setisEditing(false);
-//         }
-//         setreRender((prev) => !prev);
-//         //  getDataFrom();
-//         setAmount("");
-//         setCatagory("");
-//         setDiscription("");
-//       };
-     
-    
-    
-//        useEffect(() => {
-//         // async function fetchMyAPI() {
-//         //   let response = await fetch(`${url}${email}.json`, {
-//         //     method: "GET",
-//         //   });
-//         //   const data = await response.json();
-//         //   console.log(data);
-//         // }
-//         getDataFrom()
-//           // fetchMyAPI();
-//         }, [reRender]);
-      
-  
-
-//   return (
-//     <div onSubmit={submitHandler}>
-//     <div className="main-form" >
-//     <form>
-//       <div className="expenses">
-//         <label className="form-label">Choose Expense -</label>
-        
-//           <span className="input-group-text">$ <input
-//             type="number"
-//             className="form-control"
-//             placeholder="enter amount"
-//             onChange={amountChangeHandler}
-//             value={amount}
-//           />
-// </span>
-        
-//       </div>
-
-//       <div className="discription">
-//         <label className="form-label"> Add a discription -</label>
-//         <input type="text" 
-//         placeholder="enter description"
-//         onChange={discriptionChangeHandler}
-//         value={description}
-//         ></input>
-//       </div>
-
-//     <div className="category">
-//     <label className="form-label">Choose Catagory -</label>
-//     <select
-//       className="form-select col"
-//       onChange={catagoryChangeHandler}
-//       value={catagory}
-//     >
-//       <option>Movie</option>
-//       <option>Shopping</option>
-//       <option>Rent</option>
-//       <option>Grocery</option>
-//     </select>
-//   </div>
-//   <button
-//   className="btn btn-primary mt-4 btn1"
-//   type="submit"
-//               //onClick={submitHandler}
-//               >
-//    Submit
-// </button>
-
-//   </form>
-
-// </div>
-// <div>
-
-
-// </div>
-// </div>
-//   )
-// };
-
-// export default ExpenseItem
 
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import {StoreData} from '../../StoreData/Store';
 import classes from './ExpenseItem.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { expAction } from '../../../StoreRedux/expenseReducer';
 
 const ExpenseItem = () => {
 
@@ -177,7 +14,11 @@ const ExpenseItem = () => {
     const [id,setid]=useState(null);
     const [isEditing,setisEditing]=useState(false);
     const [showExp,setshowExp]=useState(false)
-    const ctx=useContext(StoreData);
+    //const ctx=useContext(StoreData);
+
+    //reducer
+    const dispatch=useDispatch();
+    const totalItem=useSelector(state=>state.exp.items)
 
      const [reRender,setreRender]=useState(true)
 
@@ -210,7 +51,9 @@ const ExpenseItem = () => {
       for(let key in data){
         newItem.push({id:key,...data[key]})
       }
-      ctx.addItem(newItem);
+      // ctx.addItem(newItem);
+      // console.log('newItem',newItem);
+      dispatch(expAction.addItemHandler(newItem));
       console.log('newItem',newItem);
      
     }
@@ -243,7 +86,7 @@ const ExpenseItem = () => {
 
     const submitHandler= async(e)=>{
       e.preventDefault();
-      console.log('ctx.items',ctx.items);
+      // console.log('ctx.items',ctx.items);
  
       if(!isEditing){
  
@@ -276,7 +119,8 @@ const ExpenseItem = () => {
         });
         setisEditing(false);
       }
-      getDataFrom();
+      // getDataFrom();
+      setreRender(prev=>!prev)
       setAmount('')
         setCatagory('')
         setDiscription('')
@@ -295,7 +139,8 @@ const ExpenseItem = () => {
            newItem.push({id:key,...data[key]})
          }
          console.log('useEffectCalled',newItem);
-         ctx.addItem(newItem);
+        //  ctx.addItem(newItem);
+        dispatch(expAction.addItemHandler(newItem));
        }
  
        fetchMyAPI()
@@ -354,13 +199,15 @@ const ExpenseItem = () => {
   <tbody>
 
 {
-  ctx.items.map((item,indx)=>(
+  // ctx.items.map((item,indx)=>(
+    //redux
+    totalItem.map((item,indx)=>(
       <tr key={item.id}>
       <th scope="row">{indx+1}</th>
       <td>{item.amount}</td>
       <td>{item.catagory}</td>
       <td>{item.decription}</td>
-      <td><button type='button' className='btn btn-warning' onClick={editHandler.bind(null,item.id,item.amount,item.catagory,item.decription)} >Edit</button></td>
+      <td><button type='button' className='btn btn-success' onClick={editHandler.bind(null,item.id,item.amount,item.catagory,item.decription)} >Edit</button></td>
       <td><button type='button' className='btn btn-danger' onClick={toDeleteData.bind(null,item.id)}>Delete</button></td>
     </tr>
   ))
