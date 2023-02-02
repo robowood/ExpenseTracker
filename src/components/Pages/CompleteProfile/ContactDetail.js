@@ -1,13 +1,8 @@
-
-import React, { Fragment, useContext, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import classes from './contact.module.css';
-import AuthContext from '../../Store/auth-context';
+import classes from './ContactDetail.module.css'
 
-
-
-const Contact = () => {
-  const authCtx=useContext(AuthContext);
+const ContactDetail = () => {
 
 
 
@@ -22,7 +17,7 @@ const Contact = () => {
         fetch(urlGet,{
             method:"POST",
             body:JSON.stringify({
-                idToken:authCtx.token,
+                idToken:localStorage.getItem('idToken')
             }),
             headers:{
                 'Content-Type':'application/json'
@@ -55,7 +50,7 @@ const Contact = () => {
 fetch(url,{
     method:'POST',
     body:JSON.stringify({
-        idToken:authCtx.token,
+        idToken:localStorage.getItem('idToken'),
         displayName:name,
         photoUrl:imgUrl,
         // deleteAttribute: "NULL",
@@ -114,4 +109,4 @@ fetch(url,{
   )
 }
 
-export default Contact;
+export default ContactDetail

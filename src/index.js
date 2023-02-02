@@ -1,23 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { AuthContextProvider } from './Store/auth-context';
-
 import './index.css';
 import App from './App';
+import reportWebVitals from './reportWebVitals';
+import AuthProvider from './components/Authentication/AuthProvider';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './StoreRedux';
-import { StoreData } from './Components/StoreData/Store';
+import store from './components/storeRedux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-//<AuthContextProvider>
-//<StoreData.Provider>
-<Provider store={store}>
-<BrowserRouter >  
-<App />
-</BrowserRouter>
-</Provider>
-//</StoreData.Provider>
-//</AuthContextProvider>
+  // <React.StrictMode>
+     <BrowserRouter>
+    {/* <AuthProvider> */}
+    <Provider store={store}>
+    <App />
+    </Provider>
+    {/* </AuthProvider> */}
+    </BrowserRouter>
+    // {/* </React.StrictMode> */}
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

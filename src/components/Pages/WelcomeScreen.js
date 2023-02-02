@@ -1,24 +1,18 @@
-
 import React, { Fragment, useContext, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import classes from './Welcome.module.css'
-import AuthContext from '../../Store/auth-context'
-import ExpenseItem from './Expenses/ExpenseItem'
-import ExpenseTable from './Expenses/ExpenseTable'
-import Store,{StoreData} from '../StoreData/Store'
-import { useDispatch } from 'react-redux';
-import { authAction } from '../../StoreRedux/authReducer'
-const Welcome = () => {
-    
-//  const authCtx=useContext(AuthContext)
- const ctx=useContext(StoreData);
- const dispatch=useDispatch();
+import AuthContext from '../Authentication/auth-context'
+import Store, { StoreData } from '../storeOfData/Store'
+import { authAction } from '../storeRedux/authReducer'
+import ExpenseItems from './Expense/ExpenseItems'
+import classes from './WelcomeScreen.module.css'
 
-//  const logoutHandler=()=>{
-//     authCtx.logout();
-    
-//  }
-    
+const WelcomeScreen = () => {
+    // Redux
+    const dispatch=useDispatch()
+
+    // const authCtx=useContext(AuthContext)
+    const ctx=useContext(StoreData);
 
     
 
@@ -30,8 +24,7 @@ const Welcome = () => {
             method:'POST',
             body:JSON.stringify({
                 requestType:"VERIFY_EMAIL",
-                // idToken:authCtx.token,
-                Token:localStorage.getItem('Token')
+                idToken:localStorage.getItem('idToken')
             }),
             headers:{
                 'Content-Type': 'application/json'
@@ -40,7 +33,6 @@ const Welcome = () => {
             const data=res.json();
             data.then((resp)=>{
                 console.log(resp);
-                alert("check your email")
             })
         }).catch((err)=>{
             console.log('err',err)
@@ -61,20 +53,21 @@ const Welcome = () => {
             </div>
         </div>
         <div className={classes.buttons}>
-
+       
         <button className={classes.logout} onClick={()=>dispatch(authAction.logout())}>logout</button>
         <button type='submit' onClick={verifyEmailHandler} className={classes.verifyEmail}>Verify Email</button>
         </div>
         <div className={classes.line}></div>
-        <div className={classes.form}>
-        <ExpenseItem />
-
+        
+      <div className={classes.form}>
+        <ExpenseItems />
         </div>
-      
+        <div className={classes.table}>
+        </div>
       
      
     </Fragment>
   )
 }
 
-export default Welcome;
+export default WelcomeScreen

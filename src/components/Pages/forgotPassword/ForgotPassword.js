@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import classes from './ForgetPassword.module.css'
+import classes from './ForgotPassword.module.css'
 
-const ForgetPassword = () => {
+const ForgotPassword = () => {
 
     const [email,setEmail]=useState();
     const [sending,setsending]=useState(false);
@@ -38,7 +38,7 @@ const ForgetPassword = () => {
                     alert('Check your email inbox and reset password');
                     redirect('/');
                 }
-
+               
 
             })
         }).catch((err)=>{
@@ -50,7 +50,7 @@ const ForgetPassword = () => {
   return (
     <Fragment>
         <div className={classes.main}>
-
+            
             <div className={classes.form}>
                 <label>Enter the email with which you have registerd</label>
                 <input type='email' onChange={emailChangeHandler} value={email}/>
@@ -64,5 +64,4 @@ const ForgetPassword = () => {
   )
 }
 
-export default ForgetPassword
- 
+export default ForgotPassword

@@ -1,34 +1,41 @@
-import React from 'react';
-import Authentication from './Components/Auth/Authentication';
-import Welcome from './Components/Pages/Welcome';
-import { Route,Routes } from 'react-router-dom';
-import AuthContext from './Store/auth-context';
-import { useContext } from 'react';
-import CompleteProfile from './Components/Pages/CompleteProfile';
-import ForgetPassword from './Components/Pages/ForgetPassword/ForgetPassword';
-import ExpenseItems from './Components/Pages/Expenses/ExpenseItem';
-import Store from './Components/StoreData/Store';
+import logo from './logo.svg';
+import './App.css';
+import Authentication from './components/Authentication/Authentication';
 
+import { Fragment, useContext } from 'react';
+import AuthContext from './components/Authentication/auth-context';
+import WelcomeScreen from './components/Pages/WelcomeScreen';
+import { Route, Routes } from 'react-router-dom';
+import CompleteProfile from './components/Pages/CompleteProfile/CompleteProfile';
+import ForgotPassword from './components/Pages/forgotPassword/ForgotPassword';
+import ExpenseItems from './components/Pages/Expense/ExpenseItems';
+import Store from './components/storeOfData/Store';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const authCtx=useContext(AuthContext);
+
+  // const ctx =useContext(AuthContext)
+  // Redux
+  const isAuth=useSelector(state=>state.auth.isAthenticated);
+  const theme=useSelector(state=>state.theme.theme)
+
   return (
-    <div>
-      <Store>   
-           <Routes>
-        <Route path='/' element= { <Welcome />} />
-        <Route path='/completeprofile' element={!authCtx.isLoggedIn ? <Authentication /> : <CompleteProfile />} />
-        <Route path='/forgotPassword' element={<ForgetPassword />} />
-
-        {/* <Route path='/completeprofile' element= {<CompleteProfile/>} /> */}
-
+    
+    <Fragment>
+      <div className={theme ? 'dark' : ''}>
+       {/* <Store> */}
       
+      <Routes>
+        <Route path='/' element= {!isAuth ? <Authentication /> : <WelcomeScreen />} />
+        <Route path='/completeprofile' element={!isAuth ? <Authentication /> : <CompleteProfile />} />
+        <Route path='/forgotPassword' element={<ForgotPassword />} />
 
 
       </Routes>
-      </Store>
+      {/* </Store> */}
+      </div>
 
-    </div>
+      </Fragment>
   );
 }
 

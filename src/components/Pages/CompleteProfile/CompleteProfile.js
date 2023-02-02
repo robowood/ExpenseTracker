@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './CompleteProfile.module.css';
-import Contact from './Contact';
+import ContactDetail from './ContactDetail';
 
 const CompleteProfile = () => {
   return (
@@ -16,7 +16,7 @@ const CompleteProfile = () => {
         <div className={classes.line}></div>
         <div className={classes.contactDetail}>
 
-            <Contact />
+            <ContactDetail />
         </div>
     </div>
   )

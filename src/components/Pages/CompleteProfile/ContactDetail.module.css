@@ -1,3 +1,4 @@
+
 .main{
     width: 95vw;
     display: flex;
@@ -34,12 +35,6 @@ cursor: pointer;
     height: 20px;
     border-radius: 100%;
     margin-right: 10px;
-    width: 25px;
-}
-
-.img img{
-    width: 20px;
-    background-color: aqua;
 }
 .fullName{
 margin-right: 10px;
