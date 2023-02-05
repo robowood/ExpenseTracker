@@ -40,8 +40,7 @@ const ExpenseItems = () => {
     dispatch(themeAction.themeChangeHandler())
   }
 
-  const url='https://expense-tracker-15366-default-rtdb.firebaseio.com/';
-
+  const url = 'https://expense-tracker-15366-default-rtdb.firebaseio.com/';
   const email = localStorage.getItem("email");
 
   const getDataFrom = async () => {

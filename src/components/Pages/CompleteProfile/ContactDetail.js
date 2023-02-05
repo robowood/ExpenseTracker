@@ -11,7 +11,7 @@ const ContactDetail = () => {
     const [imgUrl,setImgUrl]=useState();
 
 
-    const urlGet='https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBA0u2j_pe10AsypQuTme8e1xEDdseCq4M';
+    const urlGet='https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyAzlQHFRtkaZpExFfx1mBDR64QU8JL9mO4';
 
     const getDataHandler=()=>{
         fetch(urlGet,{
